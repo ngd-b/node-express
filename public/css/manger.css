@@ -1,0 +1,144 @@
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;color:#333;text-decoration:none;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+.hide{display:none}
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}
+.clearfix{*zoom:1}
+em,i,s{font-style:normal;}
+
+/*公共样式*/
+.aBtn{
+    width:80px;
+    height:45px;
+    font-size:22px;
+    text-align: center;
+    line-height:45px;
+    border:1px solid #f00;
+    border-radius:15px;
+    cursor:pointer;
+}
+/*管理员登录界面样式*/
+#manger{
+    position: absolute;
+    width:100%;
+    height:100%;
+    background-color: aquamarine;
+    overflow-y: scroll;
+}
+.manger{
+    width:500px;
+    height:200px;
+    font-size:25px;
+    padding-left:60px;
+    padding-top:40px;
+    margin-left:500px;
+    margin-top:200px;
+    line-height:50px ;
+    border:1px solid #eee;
+    border-radius:20px;
+}
+.manger input{
+    padding:4px;
+    height:35px;
+}
+.manger .aBtn{
+    margin-left:80px;
+    height:45px;
+}
+/*操作页面样式*/
+#manger a{
+    margin:22px;
+    font-size:17px;
+}
+#manger h2{
+    margin:30px;
+}
+.operate{
+    width:700px;
+    height:40px;
+    margin:40px 0 10px 40px;
+    border:2px solid #eee;
+}
+.operate ul li{
+    font-size:22px;
+    display: inline-block;
+    line-height: 40px;
+    padding-left:40px;
+}
+/*用户信息管理界面*/
+.Userarea{
+    width:1300px;
+    margin-left:50px;
+    line-height:15px;
+}
+.Userarea ul li{
+    margin:0;
+    display:inline-block;
+    width:160px;
+    height:30px;
+    text-align: center;
+    line-height: 30px;
+    border:1px solid #eee;
+    font-size:16px;
+    overflow: hidden;
+}
+.UserInfo ul li{
+    margin:0;
+    background-color: #fff;
+    color:#000;
+    font-size:13px;
+}
+.UserInfo .btn{
+    width:80px;
+    margin-left:40px;
+    font-size:20px;
+    background-color: darkgray;
+}
+/*商品信息管理界面*/
+.goodsarea{
+    width:1700px;
+    margin-left:50px;
+    line-height:15px;
+}
+.goodsarea ul li{
+    margin:0;
+    display:inline-block;
+    width:140px;
+    height:30px;
+    text-align: center;
+    line-height: 30px;
+    border:1px solid #eee;
+    font-size:16px;
+    overflow: hidden;
+}
+.goodsInfo{
+    margin-top:8px;
+}
+.goodsInfo input{
+    width:130px;
+    height:30px;
+    text-align:center;
+    padding-left:3px;
+    margin-left:6px;
+    background-color: #fff;
+    color:#000;
+    font-size:13px;
+}
+.goodsInfo a{
+    padding:10px;
+    background-color: darkgray;
+    border-radius: 12px;
+}
+#goodsadd{
+    margin-top:10px;
+}
+#goodsadd input{
+    width:140px;
+    height:30px;
+    padding-left:10px;
+}
+.goodsadd{
+    font-size:18px;
+    width:65px;
+    height:35px;
+}

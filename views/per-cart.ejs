@@ -1,0 +1,259 @@
+<%- include('header')%>
+<div id="personal" class="bder">
+    <div class="info bder">
+        <div class="avator bder">
+            <a class="ava" href="#"><img src="/images/44.jpg" alt="头像"></a><br />
+            <label>用户名：<%= user.name%></label>
+        </div>
+        <div class="item">
+            <ul>
+                <li><a href="/personal/info">个人资料</a></li>
+                <li><a href="/personal/cart">购物车</a></li>
+                <li><a href="/personal/order">已下订单</a></li>
+                <li><a href="/personal/ordered">已购买</a></li>
+                <li><a href="/personal/ensure">保障金</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="show bder">
+        <div id="cart">
+            <div class="cartItem">
+                <ul>
+                    <li></li>
+                    <li>商品名称</li>
+                    <li class="bigshow">商品信息</li>
+                    <li>商品数量</li>
+                    <li>商品单价</li>
+                    <li>商品总价</li>
+                </ul>
+            </div>
+            <br/>
+            <div class="cartshow">
+                <ul>
+                    <% goods.forEach(function(goods){%>
+                    <li>
+                        <input type="checkbox" value="<%= goods.count*goods.onePrice%>"/>
+                        <input type="hidden" value="<%= goods._id%>"/>
+                    </li>
+                    <li><a href="/main/<%= goods.goodsId%>/single"><%= goods.gName%></a></li>
+                    <li class="bigshow">
+                        <div>
+                            <img src="/images/44.jpg">
+                            <div>
+                                <label><%= goods.describe%></label><br />
+                                <label>尺寸：<%= goods.size%></label>
+                            </div>
+                        </div>
+                    </li>
+                    <li><%= goods.count%></li>
+                    <li><%= goods.onePrice%></li>
+                    <li class="totalPrice"><%= goods.count*goods.onePrice%></li>
+                    <li class="del"><a href="/singleGoods/<%= goods._id%>/1/remove">删除</a></li>
+                    <!--<li><label class="totalPrice"></label></li>-->
+                    <%})%>
+                </ul>
+            </div>
+            <br/>
+            <div class="page">
+                <ul>
+                    <%for(var i=0;i<page;i++){%>
+                    <li><%= i+1%></li>
+                    <%}%>
+                </ul>
+            </div>
+            <div class="pay">
+                <div class="left">
+                    <input class= '' type="checkbox">全选
+                </div>
+                <div class="right">
+                    总金额：<label class="AllPrice">0.00</label>
+                    <input type="button" value="提交订单" onclick="return pay()"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    var bool=false;   //用于判断是否点击了分页，而获取数据方式有不同
+    var lb=
+    {
+        page:function(){
+            /**数据实现分页
+             * 可累死了，首先不知道如何获取点击对象的文本节点值，
+             * 对于ajax get/post 没有理解，
+             * 返回的数据处理方式，
+             * @type {any|jQuery|HTMLElement}
+             */
+            var pageNum = $('.page li');
+            pageNum.click(function(){
+                bool=true;
+                page(this);
+            });
+            function page(obj){
+                for(var i =0;i<pageNum.length;i++){
+                    pageNum[i].style.backgroundColor = '#fff';
+                }
+                obj.style.backgroundColor = '#f00';
+                var count = obj.firstChild.nodeValue;
+                $('.right .AllPrice')[0].innerHTML="0.00";
+
+
+                $.ajax({
+                    type:'GET',
+                    url:'/personal/cart/page',
+                    data:{
+                        count:count
+                    },
+                    dataType:'json',
+                    success:function(data){
+                        //alert('成功：'+data.data);
+                        var goods=data.goods;
+                        var cart = $('.cartshow');
+                        //alert(goods[0].nodeName);
+                        //goods[0].innerHTML='hello'
+                        var content='<ul>';
+                        goods.forEach(function(goods){
+                            content+=
+                                    ' <li>'+
+                                    '<input type="checkbox" value="'+goods.count*goods.onePrice+'"/>'+
+                                    '<input type="hidden" value="'+goods._id+'"/></li>'+
+                                    '<li><a href="/main/'+goods.goodsId+'/single">'+goods.gName+'</a></li>'+
+                                    '<li class="bigshow">'+
+                                    '<div>'+
+                                    '<img src="/images/44.jpg">'+
+                                    '<div>'+
+                                    '<label>'+goods.describe+'</label><br />'+
+                                    '<label>尺寸 : '+goods.size+'</label>'+
+                                    '</div></div></li>'+
+                                    '<li>'+goods.count+'</li>'+
+                                    '<li>'+goods.onePrice+'</li>'+
+                                    '<li>'+goods.count*goods.onePrice+'</li>'+
+                                    '<li><a href="/singleGoods/'+goods._id+'/1/remove">删除</a></li>';
+                        });
+                        content+='</ul>'
+                        cart[0].innerHTML = content;
+                        lb.price();
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        alert('error ' + textStatus + " " + errorThrown);
+                    }
+                });
+            }
+        },
+        /**商品选项   复选框 的单击事件
+         *
+         *对于如何获取与复选框相对应的商品的价格，很是头疼
+         * 待解决。。。
+         * @type {any|jQuery|HTMLElement}
+         */
+        price:function(){
+            var select = $('.cartshow input:even');
+            var allselect= $('.left input');
+            var allprice = $('.right .AllPrice');
+            //allprice[0].innerHTML = '556';
+            var total=0;
+            for(var i=0;i<select.length;i++){
+                select[i].checked=false;
+                allselect[0].checked=false;
+            }
+            select.click(function(){
+                price(this);
+                allprice[0].innerHTML = total;
+            });
+            function price(obj){
+                if(obj.checked){
+                    total+=parseFloat(obj.value);
+                    //alert(obj.value);
+                }else{
+                    total-=parseFloat(obj.value);
+                }
+
+            }
+            allselect.click(function(){
+                total=0;
+                if(allselect[0].checked){
+                    //alert('j');
+                    for(var i=0;i<select.length;i++){
+                        select[i].checked=true;
+                        total+=parseFloat(select[i].value);
+                    }
+                }else{
+                    for(var i=0;i<select.length;i++){
+                        select[i].checked=false;
+                    }
+                }
+                allprice[0].innerHTML = total;
+            });
+            //allprice[0].innerHTML = total;
+        }
+    }
+    lb.price();
+    lb.page();
+
+    /**
+     * 订单结算这一块，有的牵扯当选按钮相对应的商品信息，
+     *最起码是个商品ID   ， 还可以从数据库中查找
+     */
+    function pay(){
+        var goodsId = [];
+        var allprice = $('.right .AllPrice');
+        var select = $('.cartshow input:even');
+        var total = parseFloat(allprice[0].innerHTML);
+
+        //alert(allprice[0].innerHTML);
+        if(total<=0){
+            alert('请选择物品！');
+            return false;
+        }
+        for(var i =0;i<select.length;i++){
+            //alert(select.length);
+            if(select[i].checked){
+               // var goodid = select[i].nextSibling.nextSibling.value|select[i].nextSibling.value;
+                //==null) ? select[i].nextSibling.value : select[i].nextSibling.nextSibling.value;
+
+                  var  goodid= bool==false ? select[i].nextSibling.nextSibling.value : select[i].nextSibling.value;
+
+                goodsId.push(goodid);
+                //alert(goodid);
+            }
+
+        }
+        $.ajax({
+            type:'GET',
+            url:'/personal/buy/cart',
+            data:{
+                goodsId:goodsId
+            },
+            dataType:'json',
+            success:function(data){
+                if(data.stat=="success"){
+                    alert(data.data);
+                    //window.open("http://127.0.0.1:4400/personal/address","width=150,height:400,top:200,left:200");
+
+                    /*var show = $(".show");
+                    var content = "";
+                    content+="<form method='post' action='/personal/address' onsubmit='return address()'>"+
+                            "<div class='address'>"+
+                            "<h5>收货地址信息填写：</h5><br />"+
+                            "姓名：<input type='text' name='name' id='name'><br />"+
+                            "地址：<input type='text' name='address' id='address'><br />"+
+                            "电话：<input type='text' name='tell' id='tell'><br />"+
+                            "邮编：<input type='text' name='postcard' id='postcard'><br />"+
+                            "备注：<textarea name='remark' id='remark' rows='10' cols='30'></textarea><br />"+
+                            "<input type='submit' value='提交' /><br />"+
+                            "</div></form>"
+                    show[0].innerHTML=content;*/
+                }else{
+                    alert(data.data);
+                }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                alert('error ' + textStatus + " " + errorThrown);
+            }
+        });
+    }
+
+</script>
+<%- include('footer')%>

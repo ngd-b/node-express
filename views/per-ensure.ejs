@@ -1,0 +1,42 @@
+<%- include('header')%>
+<div id="personal" class="bder">
+    <div class="info bder">
+        <div class="avator bder">
+            <a class="ava" href="#"><img src="/images/44.jpg" alt="头像"></a><br />
+            <label>用户名：<%= user.name%></label>
+        </div>
+        <div class="item">
+            <ul>
+                <li><a href="/personal/info">个人资料</a></li>
+                <li><a href="/personal/cart">购物车</a></li>
+                <li><a href="/personal/order">已下订单</a></li>
+                <li><a href="/personal/ordered">已购买</a></li>
+                <li style="display: none"><a href="/personal/ensure">保障金</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="show bder">
+        <form method ='post'>
+            <div class="ps_ensure">
+                <label>你的保障金额为：￥<%= user.SecPayment%></label><br/>
+                <label>你的信用积分为：<%= user.credit%></label><br/>
+                <label>充值金额：</label>
+                <input type="text" placeholder="0.00" id="money" name="money"/><br/>
+                <input type="submit" class="payment aBtn" value="充值" onclick="return pay()"/>
+            </div>
+        </form>
+        <script>
+            function pay(){
+                var money = document.getElementById('money').value;
+                if(money==0){
+                    alert('请输入金额！');
+                    return false;
+                }else{
+                    alert('确认充值？');
+                }
+                return true;
+            }
+        </script>
+    </div>
+</div>
+<%- include('footer')%>

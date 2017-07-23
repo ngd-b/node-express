@@ -1,0 +1,122 @@
+<%- include('header')%>
+<div id="personal" class="bder">
+    <div class="info bder">
+        <div class="avator bder">
+            <a class="ava" href="#"><img src="/images/44.jpg" alt="头像"></a><br />
+            <label>用户名：<%= user.name%></label>
+        </div>
+        <div class="item">
+            <ul>
+                <li><a href="/personal/info">个人资料</a></li>
+                <li><a href="/personal/cart">购物车</a></li>
+                <li><a href="/personal/order">已下订单</a></li>
+                <li><a href="/personal/ordered">已购买</a></li>
+                <li><a href="/personal/ensure">保障金</a></li>
+				 <li style="display: none"><a href="/personal/sale">物品出售</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="show bder ordered">
+        <div id="cart">
+            <div class="cartItem">
+                <ul>
+                    <li>商品名称</li>
+                    <li class="bigshow">商品信息</li>
+                    <li>商品数量</li>
+                    <li>商品单价</li>
+                    <li>商品总价</li>
+                    <li>完成时间</li>
+                </ul>
+            </div>
+            <br />
+            <div class="cartshow">
+                <ul>
+                    <% goods.forEach(function(goods){%>
+                    <li><a href="/main/<%= goods.goodsId%>/single"><%= goods.gName%></a></li>
+                    <li class="bigshow">
+                        <div>
+                            <img src="/<%= goods.icons%>">
+                            <div>
+                                <label><%= goods.describe%></label><br />
+                                <label>尺寸：<%= goods.size%></label>
+                            </div>
+                        </div>
+                    </li>
+                    <li><%= goods.count%></li>
+                    <li><%= goods.onePrice%></li>
+                    <li><%= parseFloat(parseInt(goods.count)*parseFloat(goods.onePrice))%></li>
+                    <%
+                        var _str = goods._id.toString().substr(0,8);
+                        var _date = new Date(Number(parseInt(_str,16).toString()+'000'));
+                        _date= _date.toString().substr(3,21);
+                    %>
+                    <li class="timeshow"><%= _date%></li>
+                    <%})%>
+                </ul>
+            </div>
+            <br/>
+            <div class="page">
+                <ul>
+                    <%for(var i=0;i<page;i++){%>
+                    <li><%= i+1%></li>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    var pageNum = $('.page li');
+    pageNum.click(function(){
+        page(this);
+    });
+    function page(obj){
+        for(var i =0;i<pageNum.length;i++){
+            pageNum[i].style.backgroundColor = '#fff';
+        }
+        obj.style.backgroundColor = '#f00';
+        var count = obj.firstChild.nodeValue;
+
+        $.ajax({
+            type:'GET',
+            url:'/personal/ordered/page',
+            data:{
+                count:count
+            },
+            dataType:'json',
+            success:function(data){
+                //alert('成功：'+data.data);
+                var goods=data.goods;
+                var cart = $('.cartshow');
+                //alert(goods[0].nodeName);
+                //goods[0].innerHTML='hello'
+                var content='<ul>';
+                goods.forEach(function(goods){
+                    var _str = goods._id.toString().substr(0,8);
+                    var _date = new Date(Number(parseInt(_str,16).toString()+'000'));
+                    _date= _date.toString().substr(3,21);
+                    content+=
+                            '<li><a href="/main/'+goods.goodsId+'/single">'+goods.gName+'</a></li>'+
+                            '<li class="bigshow">'+
+                            '<div>'+
+                            '<img src="/images/44.jpg">'+
+                            '<div>'+
+                            '<label>'+goods.describe+'</label><br/>'+
+                            '<label>尺寸'+goods.size+'</label>'+
+                            '</div></div></li>'+
+                            '<li>'+goods.count+'</li>'+
+                            '<li>'+goods.onePrice+'</li>'+
+                            '<li>'+goods.count*goods.onePrice+'</li>'+
+                            '<li class="timeshow">'+_date+'</li>';
+                });
+                content+='</ul>'
+                cart[0].innerHTML = content;
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                alert('error ' + textStatus + " " + errorThrown);
+            }
+        });
+    }
+</script>
+<%- include('footer')%>

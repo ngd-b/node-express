@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>操作界面</title>
+    <link href="/css/manger.css" rel="stylesheet">
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script>
+        var select = $('.operate li');
+        select.click(function(){
+            change(this);
+        });
+        function change(thisObj){
+            for(var i=0;i<select.length;i++){
+                select[i].style.backgroundColor='aquamarine';
+            }
+            thisObj.style.backgroundColor='#fff';
+        }
+    </script>
+</head>
+<body>
+<div id="manger">
+    <a href="/signout"><<返回主页</a>
+    <h2>管理员：<%= manger.name%></h2>
+    <div class="operate">
+        <ul>
+            <li><a href="/operation/userInfo">用户信息管理</a></li>
+            <li><a href="/operation/goodsInfo">商品信息管理</a></li>
+            <li><a href="/operation/messageInfo">类别信息管理</a></li>
+        </ul>
+    </div>

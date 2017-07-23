@@ -1,0 +1,81 @@
+<%- include('header')%>
+<div id="personal" class="bder">
+    <div class="info bder">
+        <div class="avator bder">
+            <a class="ava" href="#"><img src="/images/44.jpg" alt="头像"></a><br />
+            <label>用户名：<%= user.name%></label>
+        </div>
+        <div class="item">
+            <ul>
+                <li><a href="/personal/info">个人资料</a></li>
+                <li><a href="/personal/cart">购物车</a></li>
+                <li><a href="/personal/order">已下订单</a></li>
+                <li><a href="/personal/ordered">已购买</a></li>
+                <li><a href="/personal/ensure">保障金</a></li>
+                <li><a href="/personal/sale">物品出售</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="show bder">
+        <div class="tip1">
+            <h5>商品发布须知:</h5>
+            <ul>
+                <li>1.保障图片与实物一样.</li>
+                <li>2.描述不要过长，不超过12个字符.</li>
+                <li>3.商品数量不能超过10，不得小于1个.</li>
+                <li>4.单个用户单词只能出售一件商品.</li>
+            </ul>
+        </div>
+        <%
+            if(goods.size==0){
+                goods.forEach(function(goods){
+                    %>
+        <form method="post" action="/personal/sale" enctype="multipart/form-data">
+            <div id="goodsadd">
+                名称：<input type="text" name="name" value="<%= goods.name%>"/><br/>
+                描述：<input type="text" name="describe" value="<%= goods.name%>"/><br/>
+                价格：<input type="text" name="price" value="<%= goods.name%>"/><br/>
+                类别：<input type="text" name="genre" value="<%= goods.name%>"/><br/>
+                标签：<input type="text" name="tags" value="<%= goods.name%>"/><br/>
+                数量：<input type="text" name="count" value="<%= goods.name%>"/><br/>
+                图片：<input type="file" name="icons" ><img src="#" alt="商品图片"><br/>
+                <%
+                 if(goods.isSale.equals("出售中")){
+                     %>
+                转态：<label><%= "出售中"%></label>
+                <%
+                 }else{
+                     %>
+                转态：<label><%= "审核中"%></label><br/>
+                <input type="submit" id="ipt" value="修改">
+                <%
+                 }
+                  %>
+            </div>
+        </form>
+        <%
+            });
+        }else{
+        %>
+        <form method="post" action="/personal/sale/add" enctype="multipart/form-data">
+            <div class="goodsadd">
+                名称：<input type="text" name="name" placeholder="商品名称"/><br/>
+                描述：<input type="text" name="describe" placeholder="描述"/><br/>
+                价格：<input type="text" name="price" placeholder="价格"/><br/>
+                类别：<input type="text" name="genre" placeholder="类别"/><br/>
+                标签：<input type="text" name="tags" placeholder="标签"/><br/>
+                数量：<input type="text" name="count" placeholder="数量"/><br/>
+                图片：<input type="file" name="icons" /><br/>
+                <input type="submit" id="ipt" value="提交">
+            </div>
+        </form>
+        <%
+            }
+          %>
+    </div>
+</div>
+<script>
+
+
+</script>
+<%- include('footer')%>

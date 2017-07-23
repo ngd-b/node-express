@@ -1,0 +1,134 @@
+<%- include('header')%>
+<div class="goodsdetail cont">
+    <div class="goodsIcon">
+        <ul>
+            <li class="current"><img src="/<%= goods.icons%>"></li>
+            <li class="small"><img src="/<%= goods.icons%>"></li>
+            <li class="small"><img src="/images/class1.jpg"></li>
+            <li class="small"><img src="/images/class2.jpg"></li>
+            <li class="small"><img src="/images/class3.jpg"></li>
+        </ul>
+    </div>
+    <div class="goodsItem">
+        <div class="infoArea marpad">
+            <h2><%= goods.name%></h2>
+            <p><%= goods.describe%></p>
+        </div>
+        <div class="priceArea marpad">
+            <h2>￥<%= goods.price%></h2>
+            <h3>服务</h3>
+            <p>30天无忧退货&nbsp;&nbsp;48小时快速退款&nbsp;&nbsp;满88元免邮</p>
+        </div>
+        <div class="selectArea">
+            <div class="pattern marpad">
+                <h2>型号：</h2>
+                <select class="size" name="size">
+                    <option value="x">小型</option>
+                    <option value="xx">中型</option>
+                    <option value="xxl">大型</option>
+                </select>
+            </div>
+            <div class="amount marpad">
+                <p class="sub"><img src="/images/sub.png"/></p>
+                <input type="text" id="num" name="num" value="1" />
+                <p class="add"><img src="/images/add.png"></p>
+            </div>
+        </div>
+        <div class="operate">
+            <label style="display:none" class="goodsId"><%= goods._id%></label>
+            <a href="#" id="buy"><img src="/images/buy.png"></a>
+            <a href="#" id="addCart"><img src="/images/addCart.png"></a>
+        </div>
+    </div>
+</div>
+<script>
+    //
+    $(document).ready(function(){
+        var $change=$('.goodsIcon li');
+        var $change1=$('.goodsIcon .current');
+        var $select=$('.pattern li');
+        $change.mousemove(function(){
+            miaobian(this);
+        });
+        //本来是点击的，不知道怎么获取被点击的，就换成item选项吧
+        /*$select.click(function(){
+            for(var i=0;i<$select.length;i++){
+                $select[i].style.borderColor= '#fff';
+            }
+            this.style.borderColor='#cd2426';
+        });*/
+        function miaobian(thisMb){
+            for(var i=1; i<$change.length; i++){
+                $change[i].style.borderColor = '#fff';
+            }
+            thisMb.style.borderColor = '#cd2426';
+
+            $change1[0].children[0].src = thisMb.children[0].src;
+        }
+        $(".add").click(function(){
+            var value=parseInt($('#num').val())+1;
+            $('#num').val(value);
+        })
+
+        $(".sub").click(function(){
+            var num = $("#num").val();
+            if(num>1){
+                $("#num").val(num-1);
+            }
+        })
+        //加入购物车ajax请求
+        //直接购买的话直接跳转，已下订单，到结算页面
+        $('#buy').click(function(){
+            var size = $('.size option:selected').val();
+            //alert(size);
+            var count = $('#num').val();
+           // alert(count);
+            var goodsId = $('.goodsId').text();
+           // alert(goodsId);
+            $.ajax({
+                type:'GET',
+                url:'/singleGoods/buy',
+                data:{
+                    goodsId:goodsId,
+                    size:size,
+                    count:count
+                },
+                dataType:'json',
+                success:function(data){
+                    alert(data.data);
+                    window.location="/personal/order";
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert('error ' + textStatus + " " + errorThrown);
+                }
+            });
+        });
+        //加入到购物车，
+        $('#addCart').click(function(){
+            var size = $('.size option:selected').val();
+            //alert(size);
+            var count = $('#num').val();
+            // alert(count);
+            var goodsId = $('.goodsId').text();
+            // alert(goodsId);
+            $.ajax({
+                type:'GET',
+                url:'/singleGoods/addCart',
+                data:{
+                    goodsId:goodsId,
+                    size:size,
+                    count:count
+                },
+                dataType:'json',
+                success:function(data){
+                    alert(data.data);
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    alert('error ' + textStatus + " " + errorThrown);
+                }
+            });
+        });
+    })
+</script>
+
+<%- include('footer')%>

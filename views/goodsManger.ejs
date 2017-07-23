@@ -1,0 +1,55 @@
+<%- include('components/Manage')%>
+<div class="goodsarea">
+    <ul>
+        <li>商品名称</li>
+        <li>描述</li>
+        <li>价格</li>
+        <li>所属类型</li>
+        <li>图片地址</li>
+        <li>标签</li>
+        <li>数量</li>
+        <li>访问量</li>
+        <li>操作</li>
+        <li>操作</li>
+    </ul>
+    <% goods.forEach(function(goods){ %>
+    <form method="post" action="/operation/goodsInfo/edit/<%= goods._id%>" enctype="multipart/form-data">
+        <div class="goodsInfo" >
+            <input type="text" name="name" value="<%= goods.name%>"  />
+            <input type="text" name="describe" value="<%= goods.describe%>"/>
+            <input type="text" name="price" value="<%= goods.price%>"  />
+            <input type="text" name="genre" value="<%= goods.genre%>"  />
+            <input type="text" name="icons" readonly value="<%= goods.icons%>" />
+            <input type="text" name="tags" value="<%= goods.tags%>"  />
+            <input type="text" name="count" value="<%= goods.count%>"  />
+            <input type="text" name="pv" value="<%= goods.pv%>"  />
+            <input type="submit" value="修改">
+            <a href="/operation/<%= goods._id%>/goodsremove">删除</a>
+        </div>
+    </form>
+    <% }) %>
+    <form method="post" action="/operation/goodsInfo/add" enctype="multipart/form-data">
+        <div id="goodsadd">
+
+        </div>
+    </form>
+    <input type="button" class="goodsadd" value="添加" onclick=" return addgoods()"/>
+    <%- include('components/notification')%>
+</div>
+</div>
+<script>
+    function addgoods(){
+        var add=document.getElementById('goodsadd');
+        var content = '<input type="text" placeholder="商品名称" name="name"/>'
+                +'<input type="text"  placeholder="描述" name="describe"/>'
+                +'<input type="text"  placeholder="价格" name="price"/>'
+                +'<input type="text"  placeholder="所属类型" name="genre"/>'
+                +'<input type="file"  placeholder="图片地址" name="icons"/>'
+                +'<input type="text"  placeholder="标签" name="tags"/>'
+                +'<input type="text"  placeholder="数量" name="count"/>'
+                +'<input type="submit" value="提交">';
+        add.innerHTML = content;
+    }
+</script>
+</body>
+</html>

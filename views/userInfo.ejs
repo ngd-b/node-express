@@ -1,0 +1,28 @@
+<%- include('components/Manage')%>
+<div class="Userarea">
+    <ul>
+        <li>用户名</li>
+        <li>密码</li>
+        <li>地址</li>
+        <li>电话</li>
+        <li>邮箱</li>
+        <li>保障金</li>
+        <li>操作</li>
+    </ul>
+<% UserAll.forEach(function(UserAll){ %>
+<div class="UserInfo">
+    <ul>
+        <li><%= UserAll.name%></li>
+        <li><%= "保密"%></li>
+        <li><%= UserAll.address%></li>
+        <li><%= UserAll.tell%></li>
+        <li><%= UserAll.email%></li>
+        <li><%= UserAll.SecPayment%></li>
+        <li class="btn"><a href="/operation/<%= UserAll._id%>/remove">删除</a></li>
+    </ul>
+</div>
+<% }) %>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "ÐÂËÎÌå";}
+/* case */
+.case_box{position:relative;margin:0px auto 0px;width:800px;height:350px;overflow:hidden}
+.case_box p{z-index:2;position:absolute;text-indent:-9999px;width:28px;height:51px;top:40%;cursor:pointer}
+.case_box ul{position:absolute;height:470px;overflow:hidden;top:0px;left:0px}
+.case_box ul li{width:860px;float:left;height:470px}
+.case_box ul li dl.case_info{line-height:17px;margin:95px 0px 0px 475px;width:295px;zoom:1;color:#616741;font-size:13px;overflow:hidden}
+.case_box ul li dl.case_info dd{text-indent:26px}
+
+.case_box ul li.case_2 dl{margin-top:150px}
+.case_box ul li.case_3 dl{margin-top:135px}
+.case_box ul li.case_4 dl{margin-top:110px}
+.case_box ul li.case_5 dl{margin-top:120px}
+.case_box ul li.case_6 dl{margin-top:115px}
+.case_box img{
+    width:860px;
+    height:470px
+}
+.case_info_add dd{line-height:22px}
+
+.case_box ol{position:absolute;bottom:0;left:50%;margin:0 0 0 -65px;height:12px;z-index:99;}
+.case_box ol li{float:left;margin:0 4px;display:inline;width:12px;height:12px;line-height:999em;background:url(../images/pagination.png) no-repeat;overflow:hidden;cursor:pointer;}
+.case_box ol li.active{background-position:0 -12px;}

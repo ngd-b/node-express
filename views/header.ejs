@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>二手家电网</title>
+    <link href="/css/app.css" rel="stylesheet" />
+    <link href="/css/broadcast.css" rel="stylesheet"/>
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <link href="/css/nav.css" rel="stylesheet"/>
+</head>
+<body>
+<%- include('components/notification')%>
+<div id="master_body">
+    <div id="master_head">
+        <div id="head_log">
+            <a href="/"><h3>二手家电网</h3></a>
+            <div id="head_search">
+                <form method="post" action="/main/search">
+                    <input type="text" id='search_text' name="search" placeholder="输入关键字" />
+                    <input id="Button1" type="submit" class="aBtn" value="搜索"/>
+                </form>
+            </div>
+        </div>
+        <%- include('components/nav')%>
+    </div>

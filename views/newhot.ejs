@@ -1,0 +1,31 @@
+<%- include('header')%>
+<div class="cont">
+    <div class="catalog">
+        <label>商品类别=><%= newhot%></label>
+        <p></p>
+    </div>
+    <div>
+        <h2>总共查询出：<b><%= goods.length%></b>条记录</h2>
+    </div>
+    <div class="displ">
+        <ul>
+            <% goods.forEach(function(goods){%>
+            <li>
+                <a href="/main/<%= goods._id%>/single">
+                    <img src="/<%= goods.icons%>"/>
+                    <div class="txt">
+                        <div>
+                            <h3><%= goods.name%></h3>
+                            <h4>￥<%= goods.price%></h4>
+                        </div>
+                        <p><%= goods.describe%></p>
+                    </div>
+                </a>
+            </li>
+            <%})%>
+        </ul>
+    </div>
+</div>
+
+
+<%- include('footer')%>

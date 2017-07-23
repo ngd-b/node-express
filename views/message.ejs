@@ -1,0 +1,38 @@
+<%- include('components/Manage')%>
+<div class="goodsarea">
+    <ul>
+        <li>类别名称</li>
+        <li>子分类</li>
+        <li>操作</li>
+        <li>操作</li>
+    </ul>
+    <% genre.forEach(function(genre){ %>
+    <form method="post" action="/operation/genre/edit/<%= genre._id%>">
+        <div class="goodsInfo" >
+            <input type="text" name="genre" value="<%= genre.name%>"  />
+            <input type="text" name="child" value="<%= genre.children%>"  />
+            <input type="submit" value="修改">
+            <a href="/operation/<%= genre._id%>/genreremove">删除</a>
+        </div>
+    </form>
+    <% }) %>
+    <form method="post" action="/operation/genre/add">
+        <div id="goodsadd">
+
+        </div>
+    </form>
+    <input type="button" class="goodsadd" value="添加" onclick=" return addgoods()"/>
+    <%- include('components/notification')%>
+</div>
+</div>
+<script>
+    function addgoods(){
+        var add=document.getElementById('goodsadd');
+        var content = '<input type="text" placeholder="类别名称" name="name"/>'
+                +'<input type="text"  placeholder="子分类" name="child"/>'
+                +'<input type="submit" value="提交">';
+        add.innerHTML = content;
+    }
+</script>
+</body>
+</html>

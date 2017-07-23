@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>操作界面</title>
+    <link href="/css/manger.css" rel="stylesheet">
+</head>
+<body>
+<div id="manger">
+    <a href="/signout"><<返回主页</a>
+    <h2>管理员：<%= user.name%></h2>
+    <div class="operate">
+        <ul>
+            <li><a href="operation/userInfo" id="mangInfo">用户信息管理</a></li>
+            <li><a href="manger-goods">商品信息管理</a></li>
+            <li><a href="manger-message">留言信息查看</a></li>
+        </ul>
+    </div>
+    <div class="Userarea">
+        <ul>
+            <li>用户名</li>
+            <li>密码</li>
+            <li>地址</li>
+            <li>电话</li>
+            <li>邮箱</li>
+            <li>保障金</li>
+        </ul>
+        <% UserAll.forEach(function(UserAll){ %>
+        <div class="UserInfo Userarea">
+            <ul>
+                <li><%= UserAll.name%></li>
+                <li><%= UserAll.password%></li>
+                <li><%= UserAll.address%></li>
+                <li><%= UserAll.tell%></li>
+                <li><%= UserAll.email%></li>
+                <li><%= UserAll.ensure%></li>
+            </ul>
+        </div>
+        <% }) %>
+    </div>
+</div>
+<script>
+    (function(){
+        var mangInfo = document.getElementById('mangInfo');
+        mangInfo.click(function(){
+            var UserArea = document.getElementsByClassName('Userarea');
+            UserArea.styel.display='block';
+        });
+    })();
+</script>
+</body>
+</html>

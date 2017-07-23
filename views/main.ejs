@@ -1,0 +1,64 @@
+
+<%- include('header')%>
+    <div id="master_content">
+        <div id="content_up">
+            <%if(user){%>
+            <%- include('components/signout')%>
+            <%}else{%>
+            <%- include('components/signin')%>
+            <%}%>
+
+            <%- include('components/broadcast')%>
+        </div>
+        <div id="content_down">
+            <div class="hot_shop shop">
+                <div class="title">
+                    <p>热卖商品</p>
+                    <p class="right"><a href="/main/hot">更多》</a></p>
+                </div>
+                <div class="hot_content displ">
+                    <ul>
+                        <% hotgoods.forEach(function(goods){ %>
+                        <li>
+                            <a href="/main/<%= goods._id%>/single">
+                                <img src="/<%= goods.icons%>"/>
+                                <div class="txt">
+                                    <div>
+                                        <h3><%= goods.name%></h3>
+                                        <h4>￥<%= goods.price%></h4>
+                                    </div>
+                                    <p><%= goods.describe%></p>
+                                </div>
+                            </a>
+                        </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
+            <div class="new_shop shop">
+                <div class="title">
+                    <p>最新商品</p>
+                    <p class="right"><a href="/main/new">更多》</a></p>
+                </div>
+                <div class="new_content displ">
+                    <ul>
+                        <% newgoods.forEach(function(goods){ %>
+                        <li>
+                            <a href="/main/<%= goods._id%>/single">
+                                <img src="/<%= goods.icons%>"/>
+                                <div class="txt">
+                                    <div>
+                                        <h3><%= goods.name%></h3>
+                                        <h4>￥<%= goods.price%></h4>
+                                    </div>
+                                    <p><%= goods.describe%></p>
+                                </div>
+                            </a>
+                        </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('footer')%>

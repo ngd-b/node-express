@@ -1,0 +1,21 @@
+<%- include('header')%>
+<div id="signup">
+    <div class="sign-title">
+        <p class="p1">注册>></p>
+        <p class="p2">有账号？<a href="/">去登陆</a></p>
+    </div>
+    <%- include('components/notification')%>
+    <form method="post" enctype="multipart/form-data">
+        <div class="sign-item">
+            姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="name" placeholder="用户名">&nbsp;&nbsp;<label style="color:red;font-size:16px;">*1-10个字符</label><br/>
+            密&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="password" name="password1" placeholder="密码">&nbsp;&nbsp;<label style="color:red;font-size:16px;">*至少6个字符</label><br/>
+            确认密码：<input type="password" name="password2" placeholder="再次确认"><br/>
+            地&nbsp;&nbsp;&nbsp;&nbsp;址：<input type="text" name="address" placeholder="地址">&nbsp;&nbsp;<label style="color:red;font-size:16px;">*至少6个字符</label><br/>
+            电&nbsp;&nbsp;&nbsp;&nbsp;话：<input type="text" name="tell" placeholder="电话">&nbsp;&nbsp;<label style="color:red;font-size:16px;">*正确填写11位电话号码</label><br/>
+            邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input type="email" name="email" placeholder="邮箱">&nbsp;&nbsp;<label style="color:red;font-size:16px;">*邮箱格式*@*.*</label><br/>
+            <input type="submit" class="regist aBtn" value="注册"/>
+
+        </div>
+    </form>
+</div>
+<%- include('footer')%>

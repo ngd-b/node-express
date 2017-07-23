@@ -1,0 +1,723 @@
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;color:#333;text-decoration:none;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+.hide{display:none}
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}
+.clearfix{*zoom:1}
+em,i,s{font-style:normal;}
+
+/*公共样式设置*/
+#ipt{
+    width:90px;
+    height:40px;
+    text-align: center;
+    font-size:24px;
+}
+.btn{                 /*按钮样式*/
+    width:60px;
+    height:20px;
+    line-height: 10px;
+    border-radius:16px ;
+}
+.btn:hover{
+    text-decoration: solid;
+    text-decoration-color: indianred;
+}
+.bder{                   /*边框样式*/
+    border-radius:20px;
+    border:1px solid #f00;
+}
+.cont{                /*内容显示区样式*/
+    width:1300px;
+    margin:0 auto;
+    background-color:#efe6e6;
+}
+.marpad{            /*商品详情itemArea项样式*/
+    margin:5px;
+    padding:10px;
+    background-color:#fff;
+}
+.aBtn{
+    width:80px;
+    height:45px;
+    font-size:22px;
+    text-align: center;
+    line-height:45px;
+    border-radius:15px;
+    cursor:pointer;
+}
+.aBtn:hover{
+    box-shadow: darkgray;
+}
+#master_body {
+    width:100%;
+    height:100%;
+}
+
+/*公用头部样式*/
+#master_head {
+    width:100%;
+
+    display:block;
+    background-color:#efe6e6;
+}
+#head_log {
+    position:relative;
+    height:100px;
+    width:100%;
+    left:30px;
+    display:inline-block;
+    float:left;
+}
+#head_log h3 {
+    font-size:35px;
+    color:#d494b3;
+    margin:30px 20px;
+    float:left;
+}
+#head_log #search_text {
+    float:left;
+    width:370px;
+    height:40px;
+    margin-top:30px;
+    margin-left:360px;
+    outline:none;
+    padding-left:20px;
+    border-radius:20px 0 0 20px;
+}
+#head_log #Button1 {
+    float:left;
+    width:80px;
+    height:40px;
+    outline:none;
+    margin-top:30px;
+    margin-left:1px;
+    border-radius:0 20px 20px 0;
+}
+#head_nav {
+    display:inline-block;
+    position:relative;
+    margin-top:3px;
+    width:100%;
+}
+/*内容部分样式*/
+#master_content {
+    width:1300px;
+    margin:0 auto;
+    background-color:#efe6e6;
+}
+#content_up {
+    position:relative;
+    height:370px;
+}
+#content_login {
+    margin:30px 30px;
+    width:340px;
+    height:270px;
+    float:left;
+    text-align:center;
+    font-size:20px;
+    padding-top:60px;
+    border-radius:30px;
+}
+#content_login input{
+    height:30px;
+    padding-left: 6px;
+    margin-top:30px;
+}
+#content_login .login{
+    height:45px;
+    margin:20px 100px;
+}
+#content_login .regis{
+    text-decoration:underline;
+}
+#content_broadcast {
+    position:relative;
+    margin:20px 20px;
+    float:right;
+    width:800px;
+    height:350px;
+    text-align:center;
+    border-radius:30px;
+    background-color:#fff;
+}
+#content_down {
+    position:relative;
+    display:block;
+}
+#content_down .shop{
+    width:1300px;
+}
+.shop .title {
+    width:1300px;
+    height:30px;
+    display:inline-block;
+    margin-top:10px;
+    margin-left:20px;
+    font-size:25px;
+    border-radius:10px;
+}
+.title p {
+    margin-left:10px;
+    float:left;
+}
+.title a {
+    text-decoration: underline;
+    font-size:18px;
+    margin-left:1000px;
+}
+/*
+.shop .content {
+    width:1180px;
+    height:180px;
+    display:inline-block;
+    margin-left:10px;
+    font-size:20px;
+    border-radius:10px;
+}
+.content li {
+    margin-top:3px;
+    margin-left:8px;
+    float:left;
+    width:280px;
+    border:1px solid #b6ff00;
+    height:170px;
+}
+.content img {
+    text-align:center;
+    width:280px;
+    height:170px;
+}
+*/
+
+/*底部信息*/
+#master_footer {
+    height:100px;
+    font-size:20px;
+    background-color: beige;
+    padding-top:30px;
+    line-height:40px;
+    padding-left:40%;
+}
+
+/*注册页面样式*/
+#signup {
+    width:800px;
+    height:500px;
+    font-size:20px;
+    border:1px solid #f00;
+    border-radius:30px;
+    margin:30px 90px;
+    padding:20px 30px;
+}
+.sign-title p{
+    position: relative;
+    height:30px;
+    padding-left:20px;
+    display: inline-block;
+}
+.sign-title .p1{
+    font-size:30px;
+    padding:20px;
+}
+.sign-title .p2{
+   float: right;
+}
+.p2 a{
+    text-decoration: underline;
+}
+.sign-item{
+    position: relative;
+    width:700px;
+    display: block;
+    padding-top:15px;
+    font-size:22px;
+    line-height: 56px;
+    margin: 10px 180px 10px;
+}
+.sign-item input{
+    padding-left:8px;
+    height:30px;
+}
+.sign-item .regist{
+    height:45px;
+}
+/*登录成功样式*/
+#content_signout{
+    margin:30px 30px;
+    width:340px;
+    height:270px;
+    float:left;
+    text-align:center;
+    font-size:20px;
+    padding-top:60px;
+    border:1px solid #f00;
+    border-radius:30px;
+}
+#content_signout a{
+    display: block;
+    padding-top:30px;
+}
+#content_signout .btn{
+    text-decoration: underline;
+    font-size:24px;
+    line-height: 10px;
+    float:right;
+    margin-right:40px;
+}
+/*个人中心样式*/
+#personal{
+    width:1300px;
+    margin:0 auto;
+    display:inline-block;
+}
+#personal .info{
+    width:300px;
+    height:600px;
+    float:left;
+    margin:10px;
+    margin-left:30px;
+    padding:25px 20px;
+}
+.info .avator{
+    width:280px;
+    height:200px;
+    margin:0 auto;
+    padding:8px;
+    text-align: center;
+}
+.avator img{
+    width:240px;
+    height:180px;
+}
+.avator label{
+    font-size:19px;
+    margin-bottom: 0;
+}
+.info .item{
+    width:280px;
+    height:300px;
+    padding:10px;
+    text-align: center;
+    font-size:23px;
+}
+.item li{
+    height:40px;
+    line-height: 40px;
+    border:1px solid #f00;
+    border-radius:20px;
+    background-color: aliceblue;
+    margin-top:20px;
+}
+#personal .show{
+    width:840px;
+    height:600px;
+    margin:10px;
+    text-align: center;
+    font-size:27px;
+    padding:25px 20px;
+    float:left;
+}
+.show h3{
+    float:left;
+    font-weight: 100;
+}
+.show .goodsadd{
+    font-weight: 100;
+    font-size:20px;
+    line-height:50px;
+    margin:100px;
+}
+.goodsadd input{
+    padding-left:8px;
+    height:30px;
+}
+.show .tip1{
+    width:800px;
+    margin:10px;
+    float:left;
+    padding:2px;
+    font-size:18px;
+    line-height: 30px;
+    text-align: left;
+    font-weight: 100;
+    border-bottom: 1px solid #f00;
+}
+
+/*个人信息查看修改*/
+.infotab ul li{
+    position:relative;
+    width:150px;
+    height:40px;
+    margin:40px;
+    line-height: 40px;
+    padding-left:20px;
+    float:left;
+    cursor:pointer;
+}
+
+.infocontent{
+    text-align: left;
+    line-height:60px;
+    padding-top:40px;
+    padding-left:200px;
+    margin:100px 0 0 0;
+}
+.infocontent input,.infocontent select{
+    padding-left:10px;
+    height:40px;
+}
+/*个人信息点击修改公共样式*/
+.infoitem{
+    background-color: antiquewhite;
+    border-bottom: 2px solid #f00;
+}
+.ps_ensure{
+    margin-top:200px;
+    line-height: 70px;
+}
+.ps_ensure input{
+    height:50px;
+    padding-left:20px;
+    font-size:16px;
+}
+/*商品分类信息显示页面样式*/
+.catalog{
+    width:1000px;
+    margin:10px auto;
+    padding:20px;
+}
+.catalog label{
+    font-size:26px;
+}
+.catalog p{
+    width:980px;
+    padding:10px;
+    border-bottom: dashed;: 1px dashed #f00;
+}
+.catalog .detail ul li{
+    width:100px;
+    height:20px;
+    font-size:16px;
+    padding:10px 30px;
+    text-decoration:underline;
+    display:inline-block;
+}
+/*单个商品展示样式*/
+.displ{
+    width:1300px;
+    background:#fff;
+    overflow:hidden;
+    padding-left:5px;
+    padding-top:5px;
+}
+.displ ul li {
+    width:297px;
+    height:198px;
+    float:left;
+    margin:10px;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+}
+.txt{
+    width:297px;
+    height:45px;
+    background:rgba(0,0,0,0.6);/*透明背景色，不透明其文字内容*/
+    position:absolute;
+    left:0;
+    bottom:0;
+    color:#fff;
+    font-family:"微软雅黑";
+}
+.txt .tit{
+    display: inline-block;
+}
+.txt h3{
+    height:45px;
+    font-size:20px;
+    font-weight:100;
+    float:left;
+    padding-top:9px;
+    padding-left:10px;
+}
+.txt h4{
+    height:45px;
+    font-size:20px;
+    font-weight:100;
+    padding-top:9px;
+    padding-left:230px;
+}
+.txt p{
+    width:297px;
+    font-size:14px;
+    text-align:center;
+}
+/*商品详情页展示*/
+.goodsdetail{
+    display:inline-block;
+}
+.goodsIcon{
+    width:450px;
+    height:500px;
+    margin:40px 10px 40px 40px;
+    padding:10px;
+    float:left;
+
+}
+.goodsIcon ul li{
+    margin:10px;
+    cursor:pointer;
+    float:left;
+}
+.goodsIcon .current,.current img{
+    width:300px;
+    height:280px;
+}
+.goodsIcon .small,.small img{
+    width:80px;
+    height:60px;
+}
+.goodsItem{
+    width:400px;
+    height:600px;
+    margin-top:40px;
+    padding:20px;
+    display: block;
+    float:left;
+}
+.goodsItem .infoArea{
+    line-height:25px;
+}
+.goodsItem .priceArea h2{
+    color:red;
+    font-size:25px;
+}
+.priceArea{
+    line-height:24px;
+    height:40px;
+}
+.priceArea h3{
+    float:left;
+}
+.priceArea p{
+    margin-left:20px;
+    float:left;
+}
+.pattern{
+    height:40px;
+    line-height: 40px;
+}
+.pattern h2{
+    float:left;
+}
+.pattern ul li{
+    width:40px;
+    text-align: center;
+    border:1px solid #ddd;
+    margin-left: 10px;
+    display: inline-block;
+    cursor:pointer;
+}
+.amount{
+    padding:20px;
+    height:40px;
+}
+.amount .sub,.add{
+    cursor:pointer;
+    float:left;
+}
+.amount input{
+    text-align: center;
+    width:45px;
+    height:30px;
+    float:left;
+}
+.operate{
+    padding-left:20px;
+}
+.operate a{
+    margin:20px;
+}
+
+/*验证情况判定*/
+.tip{
+    margin-left:20px;
+}
+.tip .err{
+    color:red;
+}
+/*收货地址*/
+.show .address{
+    margin-top:30px;
+    margin-left:230px;
+    text-align: left;
+    line-height: 50px;
+}
+.show .address input{
+    height:30px;
+    font-size:20px;
+}
+/*购物车*/
+#cart {
+    margin:0 auto;
+    padding:0 auto;
+    font-size:20px;
+    line-height: 0;
+}
+
+.cartItem ul li input{
+    width:10px;
+    text-align: center;
+}
+.cartItem ul li{
+    float:left;
+    width:90px;
+    height:30px;
+    margin:5px;
+    line-height: 30px;
+    border:1px solid #eee;
+}
+.cartItem {
+    width:900px;
+    font-size: 21px;
+    float: left;
+    display: block;
+}
+.cartshow{
+    width:900px;
+    display: block;
+}
+.cartshow ul li{
+    float:left;
+    width:88px;
+    height:110px;
+    margin:5px;
+    text-align: center;
+    line-height: 120px;
+    border:1px solid #eee;
+}
+.cartshow ul .bigshow,.cartItem ul .bigshow{
+    line-height: 28px;
+    float:left;
+    font-size:14px;
+    width:220px;
+}
+.cartshow ul .bigshow img{
+    float:left;
+    margin:3px;
+    width:80px;
+    height:100px;
+}
+/*这是已购买商品时间*/
+.cartshow ul .timeshow{
+    width:100px;
+    line-height: 40px;
+    font-size:14px;
+}
+.cartshow li a{
+    cursor: pointer;
+    width:70px;
+    text-decoration: underline;
+}
+.pay{
+    display: block;
+}
+.pay .left{
+    float:left;
+    margin:35px 0 0 15px;
+}
+.pay .right{
+    float:right;
+    margin-top:35px;
+    padding-left:50px;
+}
+.right input{
+    width:80px;
+    height:30px;
+}
+.ordered ul li{
+    margin-left:20px;
+}
+/*分页*/
+.page{
+    margin-top:10px;
+    padding-left:10px;
+    text-align: center;
+    display:block;
+}
+.page ul li{
+    display: inline-block;
+    width:16px;
+    height:16px;
+    line-height: 16px;
+    cursor:pointer;
+    border:1px solid #eee;
+}
+/*商品竞拍页面样式*/
+#auction{
+    width:1240px;
+    display: inline-block;
+    margin:10px 0 0 30px;
+    text-align: center;
+    font-size:20px;
+}
+#auction .news{
+    width:1200px;
+    height:25px;
+    border:1px solid #eee;
+    text-align: center;
+    margin:10px 0 0 30px;
+}
+.news span{
+    color:#f00;
+}
+#auction .goods{
+    width:400px;
+    height:400px;
+    float:left;
+    margin:30px;
+    padding:20px;
+    border:1px solid #eee;
+    line-height: 30px;
+}
+#auction .goods img{
+    width:300px;
+    height:280px;
+}
+#auction .goods ul li {
+    display: inline-block;
+    word-break: normal;
+}
+#auction .todo{
+    margin:260px 10px 0 10px;
+    line-height: 10px;
+    float:left;
+}
+.todo input{
+    width:160px;
+    height:30px;
+    padding-left:5px;
+    margin-top:20px;
+}
+#auction .message{
+    width:400px;
+    height:410px;
+    float:right;
+    margin:30px;
+    padding:20px;
+    border:1px solid #eee;
+}
+.message h3{
+    margin:8px;
+    border-bottom: double;
+}
+.message .content{
+    height:330px;
+    padding:20px;
+    line-height:30px;
+    background-color: burlywood;
+    color:#000;
+    overflow-y: scroll;
+}

@@ -1,0 +1,24 @@
+<%- include('header')%>
+<div id="personal" class="bder">
+    <div class="info bder">
+        <div class="avator bder">
+            <a class="ava" href="#"><img src="/images/44.jpg" alt="头像"></a><br />
+            <label>用户名：<%= user.name%></label>
+        </div>
+        <div class="item">
+            <ul>
+                <li><a href="/personal/info">个人资料</a></li>
+                <li><a href="/personal/cart">购物车</a></li>
+                <li><a href="/personal/order">已下订单</a></li>
+                <li><a href="/personal/ordered">已购买</a></li>
+                <li><a href="/personal/ensure">保障金</a></li>
+                <li style="display:none"><a href="/personal/sale">物品出售</a></li>
+                <li style="display: none"><a href="/personal/removeOrdered">删除购买记录</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="show bder">
+        <p style="margin-top: 200px;">欢迎进入个人管理中心</p>
+    </div>
+</div>
+<%- include('footer')%>

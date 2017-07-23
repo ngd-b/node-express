@@ -1,0 +1,140 @@
+<%- include("header")%>
+<div id="auction">
+    <div class="news">
+        <%
+            if(bid.length!=0){
+                    bid.forEach(function(bid){%>
+        <h3>当前最高竞价者：<span><%= bid.userName%></span> 出价<span class="bid"><%= bid.bid%></span>元</h3>
+        <% })}else{%>
+        <h4>当前无竞价者，快点下手吧！<span style="display: none" class="bid">0</span></h4>
+        <%}%>
+    </div>
+    <div class="goods">
+        <ul>
+            <%goods.forEach(function(goods){%>
+            <li style="display: none" class="goodsId"><%= goods._id%></li>
+            <li><img src="/<%= goods.icons%>"/></li><br />
+            <li><%= goods.name%></li><br />
+            <li><%= goods.describe%></li><br />
+            <li><%= '大型'%></li><br />
+            <li class="price"><%= goods.price%></li>
+            <%})%>
+        </ul>
+    </div>
+    <div class="todo">
+        <label>每次加价*100</label><br />
+        <input type="hidden" value="<%= user.name%>" name="username" id="username">
+        <input type="text" value="0" name="bid" id="bid"><br />
+        <input type="submit" value="加价" id="addbtn" onClick="return pay()">
+    </div>
+    <div class="message">
+        <h3>商品竞拍消息列表</h3>
+        <div class="content">
+            <%
+
+            if(message.length!=0){
+                message.forEach(function(message){
+                var _str = message._id.toString().substr(0,8);
+                var _date = new Date(Number(parseInt(_str,16).toString()+'000'));
+                _date= _date.toString().substr(3,21);
+            %>
+                <span><%= _date%></span>
+                <h5><%= message.userName%>出价<b><%= message.bid%></b></h5>
+            <% })
+            }else{%>
+            <h2>暂无人出价！</h2>
+            <%}%>
+        </div>
+    </div>
+</div>
+
+<script>
+    var bid = document.getElementById("bid");
+
+
+    bid.oninput=function(){
+        var num = bid.value;
+        var dot = num.split('.');
+        if(dot[1]!=null){
+
+            if(dot[1].length<=2){
+                var addbtn = document.getElementById("addbtn");
+                addbtn.removeAttribute("disabled");
+            }
+        }
+    };
+    bid.onchange=function(){
+        var num = bid.value;
+        var dot = num.split('.');
+        if(dot[1]!=null){
+
+            if(dot[1].length>2){
+                var addbtn = document.getElementById("addbtn");
+                addbtn.setAttribute("disabled",true);
+                alert("请保留两位小数");
+            }
+        }
+    }
+    function pay(){
+        var goodsId = $(".goods .goodsId")[0].innerHTML;
+        var username = $("#username").val();
+        var addbid = parseFloat($('#bid').val());    //加价
+        var price = parseFloat($('.goods .price')[0].innerHTML);   //商品价格
+        var bid = parseFloat($(".news .bid")[0].innerHTML);     //竞拍当前的价格
+
+        if(addbid<=0|| isNaN(addbid)){
+            alert('请出价！');
+            return false;
+        }
+        if(bid==0){
+            bid = addbid+price;
+        }else{
+            bid = bid+addbid;
+        }
+
+        $.ajax({
+            type:'GET',
+            url:'/auction/addmessage',
+            data:{
+                name:username,
+                id:goodsId,
+                bid:bid
+            },
+            dataType:'json',
+            success:function(data){
+                alert(data.data);
+                refresh();
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                alert('error ' + textStatus + " " + errorThrown);
+            }
+        });
+        return true;
+
+    }
+
+    function refresh(){
+        window.location.reload();
+    }
+
+    var fresh= setInterval(refresh,5000);
+
+
+    var add = $("#bid");
+    add.focus(function(){
+        clearInterval(fresh);
+    });
+
+    fresh;
+    /*var socket=io('http://localhost');
+    var content = document.getElementsByClassName('content');
+    socket.on('conn',function(data){
+        alert(data.data);
+        var section = document.createElement('section');
+        section.className='';
+        section.innerHTML='<h4>'+data.hello+'</h4>';
+        content[0].appendChild(section);
+        socket.emit('event',{my:'data'});
+    });*/
+</script>
+<%- include("footer")%>

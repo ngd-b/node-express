@@ -1,0 +1,133 @@
+<%- include('header')%>
+<div id="personal" class="bder">
+    <div class="info bder">
+        <div class="avator bder">
+            <a class="ava" href="#"><img src="/images/44.jpg" alt="头像"></a><br />
+            <label>用户名：<%= user.name%></label>
+        </div>
+        <div class="item">
+            <ul>
+                <li><a href="/personal/info">个人资料</a></li>
+                <li><a href="/personal/cart">购物车</a></li>
+                <li><a href="/personal/order">已下订单</a></li>
+                <li><a href="/personal/ordered">已购买</a></li>
+                <li><a href="/personal/ensure">保障金</a></li>
+				 <li style="display:none"><a href="/personal/sale">物品出售</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="show bder userinfo">
+        <div class="infotab">
+            <ul>
+                <li class="infoitem">基本信息</li>
+                <li>密码修改</li>
+                <li>详细信息</li>
+            </ul>
+        </div>
+        <div class="infocontent">
+            <%- include('components/notification')%>
+            <form method ='post'>
+
+                <div class="ps_info">
+                    用&nbsp;户&nbsp;名：<input type="text" name="name" readonly value="<%= user.name%>"><br/>
+                    地&nbsp;&nbsp;&nbsp;&nbsp;址：<input type="text" name="address" value="<%= user.address%>"><br/>
+                    电&nbsp;&nbsp;&nbsp;&nbsp;话：<input type="text" name="tell" value="<%= user.tell%>"><br/>
+                    邮&nbsp;&nbsp;&nbsp;&nbsp;箱：<input type="email" name="email" value="<%= user.email%>"><br/>
+                    押&nbsp;&nbsp;&nbsp;&nbsp;金：<input type="text" name="SecPayment" readonly value="<%= user.SecPayment%>"><br/>
+                    <input type="submit" class="regist aBtn" value="修改"/>
+                </div>
+            </form>
+        </div>
+        <div class="infocontent" style="display:none">
+            <form method="post" action="/personal/alertpass" onsubmit="return alertpass()">
+                <label>原&nbsp;&nbsp;密&nbsp;&nbsp;码：</label>
+                <input type="text" name="oldpass" id="oldpass" placeholder="原密码校验"/><br />
+                <label>新&nbsp;&nbsp;密&nbsp;&nbsp;码：</label>
+                <input type="text" name="newpass1" id="newpass1" placeholder=""/><br />
+                <label>再次输入：</label>
+                <input type="text" name="newpass2" id ="newpass2" placeholder=""/><br />
+                <input type="submit" value="确认修改"/>
+            </form>
+        </div>
+        <div class="infocontent" style="display:none">
+            <h5>个人详细信息填写</h5>
+            <form method="post" action="/personal/detailinfo">
+                姓名：<input type="text" placeholder="姓名" value="<%= user.realname%>"name="realname" id="realname"/><br />
+                性别：<input type="text" id="gende" value="<%= user.gender%>" readonly/>
+                <select id="gender" name="gender">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+                <br />
+                家乡：<input type="text" placeholder="家乡" value="<%= user.hometown%>" name="hometown" id="hometown"/><br />
+                工作：<input type="text" placeholder="工作" value="<%= user.work%>" name="work" id="work"/><br />
+                身份证号：<input type="text" placeholder="身份证号" value="<%= user.idcard%>" name="idcard" id="idcard"/><br />
+                出生日期：<input type="text" placeholder="出生日期"  value="<%= user.birthday%>"name="birthday" id="birthday"/><br />
+                <input type="submit" style="width:100px;font-size:20px;" value="提交"/>
+            </form>
+        </div>
+    </div>
+<!--
+    if(message!=null){
+        if(message=="success"){
+
+    <script>
+        alert("修改成功！");
+    </script>
+ }   }
+
+        message="";
+ -->
+</div>
+<script>
+    //性别选项
+    var gender = $("#gender");
+
+    var gend = $("#gende");
+
+    gender.click(function(){
+        gend.val(gender.val());
+    });
+    //点击菜单项
+    var infotab = $(".infotab ul li");
+    var infocontent = $(".infocontent");
+
+
+    for(var i=0;i<infotab.length;i++){
+        (function(_i){
+            infotab[_i].onclick=function(){
+                for(var j =0;j<infotab.length;j++){
+                    infotab[j].setAttribute("class","");
+
+                    infocontent[j].style.display="none";
+                }
+                infotab[_i].setAttribute("class","infoitem");
+
+                infocontent[_i].style.display="block";
+            };
+        })(i)
+    }
+
+    //密码修改
+    function alertpass(){
+        var oldpass=$("#oldpass").val();
+        var newpass1= $("#newpass1").val();
+        var newpass2 = $("#newpass2").val();
+
+        if(oldpass==''){
+            alert("请输入原密码！");
+            return false;
+        }
+        if(newpass1.length<6){
+            alert("请输入6位字符！");
+            return false;
+        }
+        if(newpass1!=newpass2){
+            alert("两次密码不一致！");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+<%- include('footer')%>

@@ -2,7 +2,7 @@
 一个简单的二手交易网站，基本的node +express +mongodb 开发模式流程
 
 代码想要运行，
-首先，安装node环境，及相关的模块：
+<h3>首先，</h3>安装node环境，及相关的模块：
   express框架，
   express-session存储全局变量，
   connect-mongo session是存储在数据库中的，中间件，

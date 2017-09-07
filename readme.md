@@ -19,16 +19,16 @@
   如何运行node ，express项目程序，自行百度。
   
   
-  > 说明：程序为node入门级，通过此项目基本了解node，express开发框架和MongoDB数据库，
+  >**说明：程序为node入门级，通过此项目基本了解node，express开发框架和MongoDB数据库**
   
   
   <h3>不足与改进</h3>
-  <ul>
- <li>数据库方面的不足，使用的是mongolass，数据的操作</li>
+  <ol>
+ <li>数据库方面的不足，使用的是mongolass，数据的操作有欠缺</li>
  <li>直接服务器端渲染的页面，使用前框架，最近学习了angular，后面会写一个项目</li>
  <li>node服务器端程序很初级，耦合性高，代码重用率低，service服务来集成可用度高的方法，通过传参进行数据处理</li>
  <li>还有目前自己为接触到的问题，以及还没有熟悉了解的方面，web安全、jasmine调试、webpack打包</li>
-   </ul>
+   </ol>
    
    
    

@@ -18,7 +18,8 @@
   
   如何运行node ，express项目程序，自行百度。
   
-  >说明：程序为node入门级，通过此项目基本了解node，express开发框架和MongoDB数据库，
+  
+  > 说明：程序为node入门级，通过此项目基本了解node，express开发框架和MongoDB数据库，
   
   
   <h3>不足与改进</h3>
